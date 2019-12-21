@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col">
+        <mat-form-field>
+            <input matInput (keyup)="doFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <div class="col" align="end">
+        <button mat-raised-button color="accent" [routerLink]="'/home/createBatch'">Create Batch</button>
+    </div>    
+  </div>
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Batch Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">        
+        <a [routerLink]="['/home/batchDetail',row.id]">{{row.id}}</a>
+      </td>
+    </ng-container>
+
+    <!-- Batch Name Column -->
+    <ng-container matColumnDef="batchName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{row.batchName}}</td>
+    </ng-container>
+
+    <!-- Batch Time Column -->
+    <ng-container matColumnDef="batchTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+      <td mat-cell *matCellDef="let row">{{row.batchTime}}</td>
+    </ng-container>
+
+    <!-- Batch Type Column -->
+    <ng-container matColumnDef="batchType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+      <td mat-cell *matCellDef="let row">{{row.batchType}}</td>
+    </ng-container>
+
+    <!-- Batch Start Date Column -->
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+      <td mat-cell *matCellDef="let row">{{row.startDate}}</td>
+    </ng-container>
+
+    <!-- Batch End Date Column -->
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
+      <td mat-cell *matCellDef="let row">{{row.endDate}}</td>
+    </ng-container>
+
+    <!-- Batch Course Column -->
+    <ng-container matColumnDef="course">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Course</th>
+      <td mat-cell *matCellDef="let row">{{row.courseName}}</td>
+    </ng-container>
+
+    <!-- Batch Trainer Column -->
+    <ng-container matColumnDef="trainer">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Trainer</th>
+      <td mat-cell *matCellDef="let row">{{row.trainerName}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+</div>

@@ -1,0 +1,90 @@
+<form [formGroup]="studentForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="student-card">
+      <mat-card-header>
+        <mat-card-title>Student Registration</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Student Name" formControlName="name">
+                <mat-error *ngIf="studentForm.controls['name'].hasError('required')">
+                    Student Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Mobile Number" formControlName="mobileNo">
+                    <mat-error *ngIf="studentForm.controls['mobileNo'].hasError('required')">
+                        Mobile No is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="studentForm.controls['email'].hasError('required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.controls['email'].hasError('email')">
+                        Invalid Email Address
+                    </mat-error>
+                </mat-form-field>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <mat-select placeholder="Course Name" formControlName="course" (selectionChange)="getFees()">
+                        <mat-option *ngFor="let course of courseList" [value]="course">
+                            {{ course.courseName }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="studentForm.controls['course'].hasError('required')">
+                        Course Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>  
+            </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Total Fees" formControlName="totalFees" readonly>              
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Discount" formControlName="discount" (keyup)="calculateFees()">              
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Fianl Fees" formControlName="finalFees">              
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="registrationDate" placeholder="Choose a Registration Date" formControlName="registrationDate">
+              <mat-datepicker-toggle matSuffix [for]="registrationDate"></mat-datepicker-toggle>
+              <mat-datepicker #registrationDate></mat-datepicker>
+            </mat-form-field>
+          </div>          
+        </div>      
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

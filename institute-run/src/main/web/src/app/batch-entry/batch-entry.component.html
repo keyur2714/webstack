@@ -1,0 +1,92 @@
+<form [formGroup]="batchForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="batch-card">
+    <mat-card-header>
+      <mat-card-title>Batch Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+              <mat-select placeholder="Trainer Name" formControlName="trainer" (selectionChange)="getCourseList()">
+                <mat-option *ngFor="let trainer of trainerList" [value]="trainer">
+                  {{ trainer.trainerName }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="batchForm.controls['trainer'].hasError('required')">
+                Trainer Name is <strong>required</strong>
+              </mat-error>
+          </mat-form-field>  
+        </div>
+      </div>
+      <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Course Name" formControlName="course" >
+                  <mat-option *ngFor="let course of trainerCourseList" [value]="course">
+                    {{ course.courseName }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="batchForm.controls['trainer'].hasError('required')">
+                  Course Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>  
+          </div>
+        </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Batch Name" formControlName="batchName">
+            <mat-error *ngIf="batchForm.controls['batchName'].hasError('required')">
+              Batch Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Batch Time" formControlName="batchTime">
+              <mat-option *ngFor="let batch of batchTimes" [value]="batch">
+                {{ batch }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="batchForm.controls['batchTime'].hasError('required')">
+              Batch Time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Batch Type" formControlName="batchType">
+              <mat-option *ngFor="let batchType of batchTypes" [value]="batchType">
+                {{ batchType }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="batchForm.controls['batchType'].hasError('required')">
+              Batch Type is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="startDate" placeholder="Choose a Start Date" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="endDate" placeholder="Choose a End Date" formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+              <mat-datepicker #endDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+      </div>      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

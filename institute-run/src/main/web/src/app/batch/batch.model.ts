@@ -1,0 +1,3 @@
+export class Batch{
+    constructor(public id ?: number,public batchName ?: string,public batchType ?: string,public batchTime ?: string,public courseId ?: number,public courseCode ?: string,public courseName ?: string,public fees ?: number,public trainerId?: number,public trainerName?: string,public traineMobileNo?: string,public trainerEmail?: string,public trainerType?: string,public compensationType ?: string,public percentage ?: number,public fixedPay?: number,public startDate ?: Date,public endDate?: Date){}
+}

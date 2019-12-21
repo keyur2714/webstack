@@ -1,0 +1,109 @@
+    <mat-card class="batch-card">
+      <mat-card-header>
+        <mat-card-title>Batch Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Trainer Name" [value]="batch.trainerName" readonly>            
+                </mat-form-field>    
+            </div>
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Course Name" [value]="batch.courseName" readonly>            
+                </mat-form-field>                        
+            </div>
+        </div>        
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Batch Name" [value]="batch.batchName" readonly>              
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+                    <input matInput placeholder="Batch Time" [value]="batch.batchTime" readonly>              
+            </mat-form-field>
+           </div>
+        </div>
+        <div class="row">          
+          <div class="col">
+            <mat-form-field class="full-width">
+                    <input matInput placeholder="Batch Type" [value]="batch.batchType" readonly>              
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+                    <input matInput placeholder="Batch StartDate" [value]="batch.startDate" readonly>              
+            </mat-form-field>
+          </div>
+          <div class="col">
+              <mat-form-field class="full-width">
+                    <input matInput placeholder="Batch EndDate" [value]="batch.endDate" readonly>              
+              </mat-form-field>
+            </div>
+        </div>      
+        <div class="row">    
+                <div class="mat-elevation-z8">    
+                    <table mat-table class="full-width-table" matSort aria-label="Elements">            
+                        <!-- Student Id Column -->            
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Student Id</th>
+                            <td mat-cell *matCellDef="let row">{{row.id}}</td>
+                        </ng-container>
+                        <!-- Student Name Column -->
+                        <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                        </ng-container>
+            
+                        <!-- Student Mobile Number Column -->
+                        <ng-container matColumnDef="mobileNo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile No</th>
+                        <td mat-cell *matCellDef="let row">{{row.mobileNo}}</td>
+                        </ng-container>
+            
+                        <!-- Student Email Column -->
+                        <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                        <td mat-cell *matCellDef="let row">{{row.email}}</td>
+                        </ng-container>
+            
+                        <!-- Student Course Name Column -->
+                        <ng-container matColumnDef="courseName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Course Name</th>
+                        <td mat-cell *matCellDef="let row">{{row.courseName}}</td>
+                        </ng-container>
+            
+                        <!-- Student Fees Column -->
+                        <ng-container matColumnDef="finalFees">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fees</th>
+                        <td mat-cell *matCellDef="let row">{{row.finalFees}}</td>
+                        </ng-container>
+            
+                        <!-- Student Remaining Fees Column -->
+                        <ng-container matColumnDef="feesRemaining">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Remaining Fees</th>
+                        <td mat-cell *matCellDef="let row">{{row.feesRemaining}}</td>
+                        </ng-container>
+            
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+            
+                    <mat-paginator #paginator
+                        [length]="dataSource?.data.length"
+                        [pageIndex]="0"
+                        [pageSize]="50"
+                        [pageSizeOptions]="[25, 50, 100, 250]">
+                    </mat-paginator>
+                </div>
+            </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" (click)="allocateStudents(batch.id,batch.courseCode)">Allocate Students</button>
+      </mat-card-actions>
+    </mat-card>

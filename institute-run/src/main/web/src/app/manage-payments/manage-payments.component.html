@@ -1,0 +1,69 @@
+<form [formGroup]="paymentForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="payment-card">
+      <mat-card-header>
+        <mat-card-title>Payments</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row form-group">
+          <div class="col">            
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Student Name" formControlName="student" (selectionChange)="getFeesDetails()">
+                  <mat-option *ngFor="let student of studentList" [value]="student">
+                    {{ student.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="paymentForm.controls['student'].hasError('required')">
+                  Student Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>  
+          </div>
+        </div> 
+        <div class="row form-group">
+            <div class="col">
+                Total Fees : {{totalFees}}
+            </div>
+            <div class="col">
+                Remainig Fees : {{feesRemaining}}
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col">
+                <mat-radio-group aria-label="Select Payment Option" formControlName="paymentType">
+                    <mat-radio-button value="PAYTM">Paytm</mat-radio-button>
+                    <mat-radio-button value="CARD">Card</mat-radio-button>
+                    <mat-radio-button value="CASH">Cash</mat-radio-button>
+                    <mat-radio-button value="GPAY">Google Pay</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>                       
+        <div class="row form-group">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="paymentDate" placeholder="Choose a Payment Date" formControlName="paymentDate">
+              <mat-datepicker-toggle matSuffix [for]="paymentDate"></mat-datepicker-toggle>
+              <mat-datepicker #paymentDate></mat-datepicker>
+            </mat-form-field>
+          </div>          
+        </div>      
+        <div class="row form-group">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Payment Received" formControlName="paymentReceived">
+                    <mat-error *ngIf="paymentForm.controls['paymentReceived'].hasError('required')">
+                      Payment Received is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Payment Ref No" formControlName="paymentRefNo">                    
+                </mat-form-field>
+            </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

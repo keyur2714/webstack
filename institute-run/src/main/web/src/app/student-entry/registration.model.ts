@@ -1,0 +1,3 @@
+export class Registration{
+    constructor(public id ? :number,public name?: string,public mobileNo?: string,public email?:string,public courseId?:number,public courseName?:string,public totalFees ?: number,public discount?: number,public finalFees ?: number,public feesPaid ?: number,public feesRemaining ?: number,public feesStatus?: string,public registrationDate ?: Date,public batchId ?: number,public selected ?: boolean){}
+}
